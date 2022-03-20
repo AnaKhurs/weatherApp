@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "./Loading";
 import * as Location from 'expo-location';
-import { Alert } from "react-native";
+import {Alert} from "react-native";
 
 
 export default class extends React.Component {
@@ -15,7 +15,6 @@ export default class extends React.Component {
         } catch (error) {
             Alert.alert('Hе могу определить местоположение', 'Очень грустно :(')
         }
-
     }
 
     componentDidMount() {
