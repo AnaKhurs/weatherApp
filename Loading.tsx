@@ -1,11 +1,11 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import React from "react";
 
 export default function Loading() {
     return (
         <View style={styles.container}>
+            <StatusBar barStyle="dark-content"/>
             <Text style={styles.text}>Получение погоды...</Text>
-            <StatusBar style="auto"/>
         </View>
     );
 }
