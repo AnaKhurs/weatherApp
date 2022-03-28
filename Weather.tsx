@@ -8,55 +8,56 @@ const weatherOptions = {
     Thunderstorm: {
         iconName: "thunderstorm",
         gradient: ["#0f0c29", "#302b63"],
-        title: "",
-        subTitle: "",
+        title: "Гроза",
+        subTitle: "Выключи телевизор",
     },
     Drizzle: {
         iconName: "rainy",
         gradient: ["#525252", "#3d72b4"],
-        title: "",
-        subTitle: "",
+        title: "Дождь",
+        subTitle: "Люблю дождь в нем можно спрятать слезы",
     },
     Rain: {
         iconName: "rainy",
         gradient: ["#4c669f", "#3b5998"],
-        title: "",
-        subTitle: "",
+        title: "Я не плачу это просто...",
+        subTitle: "Дождь",
     },
     Snow: {
         iconName: "snow",
         gradient: ["#2d8bcb", "#93daf3"],
-        title: "",
-        subTitle: "",
+        title: "Снег",
+        subTitle: "Копают все!",
     },
     Mist: {
         iconName: "rainy",
         gradient: ["#757F9A", "#D7DDE8"],
-        title: "",
-        subTitle: "",
+        title: "Жизнь-туман",
+        subTitle: "А ты в ней ежик",
     },
     Dust: {
         iconName: "rainy",
         gradient: ["#403B4A", "#E7E9BB"],
-        title: "",
-        subTitle: "",
+        title: "Пыль",
+        subTitle: "От топота копыт",
     },
     Smoke: {
         iconName: "rainy",
         gradient: ["#C9D6FF", "#E2E2E2"],
-
+        title: "Дым",
+        subTitle: "Который смог",
     },
     Haze: {
         iconName: "cloudy-night",
         gradient: ["#16222a", "#3a6073"],
-        title: "",
-        subTitle: "",
+        title: "Мгла",
+        subTitle: "От заката до рассвета",
     },
     Fog: {
         iconName: "rainy",
         gradient: ["#283048", "#859398"],
-        title: "",
-        subTitle: "",
+        title: "Жизнь-туман",
+        subTitle: "А ты в ней ежик",
     },
     Squall: {
         iconName: "rainy",
@@ -67,8 +68,8 @@ const weatherOptions = {
     Clouds: {
         iconName: "cloud",
         gradient: ['#076585', '#fff'],
-        title: "",
-        subTitle: "",
+        title: "Белогривые лошадки",
+        subTitle: "Tрям! Здравствуйте",
     },
 }
 
@@ -88,7 +89,11 @@ export type ConditionType =
 
 type IconNameType = "rainy" | "thunderstorm" | "cloud" | "cloudy-night"
 
-export default function Weather({temp, condition}: { temp: number, condition: ConditionType }) {
+export default function Weather({
+                                    temp,
+                                    condition,
+                                    location
+                                }: { temp: number, condition: ConditionType, location: string }) {
     return (
         <LinearGradient style={styles.container}
                         colors={weatherOptions[condition].gradient}>
@@ -96,10 +101,13 @@ export default function Weather({temp, condition}: { temp: number, condition: Co
             <View style={styles.halfContainer}>
                 <Ionicons name={weatherOptions[condition].iconName as IconNameType} size={96} color={"white"}/>
                 <Text style={styles.temp}>{temp}℃</Text>
+                <Text style={styles.location}>
+                    <Ionicons name="location-sharp" size={18} color={"white"}/> {location}
+                </Text>
             </View>
             <View style={styles.halfContainer}>
-                <Text style={styles.title}>Заголовок</Text>
-                <Text style={styles.subTitle}>Подзаголовок</Text>
+                <Text style={styles.title}>{weatherOptions[condition].title}</Text>
+                <Text style={styles.subTitle}>{weatherOptions[condition].subTitle}</Text>
             </View>
         </LinearGradient>
     )
@@ -125,16 +133,20 @@ const styles = StyleSheet.create({
         fontSize: 42,
         color: "white"
     },
+    location: {
+        fontSize: 22,
+        color: "white"
+    },
     title: {
         color: "white",
-        fontSize: 44,
+        fontSize: 30,
         fontWeight: "300",
         marginBottom: 10
     },
     subTitle: {
         color: "white",
-        fontWeight: "600",
-        fontSize: 24,
+        fontWeight: "400",
+        fontSize: 26,
     },
     textContainer: {
         paddingHorizontal: 20,
